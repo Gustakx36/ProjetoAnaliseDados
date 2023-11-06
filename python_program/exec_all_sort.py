@@ -9,6 +9,7 @@ import time
 import sys
 import re
 
+# Arquivos que foram feitos testes na máquina local
 
 # 'Teste1' -> Pouco menos de 50 itens
 # ['Total_emissions']
@@ -25,6 +26,19 @@ import re
 # 'Teste5' -> Mais de 3.500.000 de itens
 # ['Average value']
 
+
+
+# ---------------------------------------------------------------------
+# 'arquivo_exemplo' -> Exemplo de 4 itens
+# ['coluna_2']
+
+#Variaveis Globais:
+arquivo = 'arquivo_exemplo' # nome do arquivo
+coluna = 'coluna_2' # Coluna que vai ser retirada a lista para o sort
+# ---------------------------------------------------------------------
+
+
+
 def msgDesempenho(objeto):
     keyObj = objeto.keys()
     sortedObj = {}
@@ -36,8 +50,7 @@ def msgDesempenho(objeto):
 if __name__ == '__main__':
     listaTotal = []
     try:
-        for item in read('./base_dados/Teste2.csv'):
-            coluna = 'ValueNumeric'
+        for item in read('../base_dados/'+arquivo+'.csv'):
             if re.match('[0-9]+', item[coluna]):
                 listaTotal.append(item[coluna])
         print("""
