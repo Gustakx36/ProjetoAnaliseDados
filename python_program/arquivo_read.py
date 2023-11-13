@@ -18,14 +18,14 @@ def leituraObj(arquivo):
                     indice = 0
                     linha = separaString(linha)
                     for data in linha.split(','):
-                        obj[colunas[indice].replace('\n', '')] = data.replace('-virgula-', ', ').replace('\n', '')
+                        obj[colunas[indice].replace('\n', '')] = data.replace('-virgula-', ',').replace('\n', '')
                         indice += 1
                     dataObj.append(obj)
                 return dataObj
             
 def separaString(string):
     padrao = re.findall('\"(.*?)\"', string)
-    for  item in padrao:
+    for item in padrao:
         novoItem = item.replace(',', '-virgula-')
         string = string.replace(item, novoItem)
     return string

@@ -1,4 +1,3 @@
-from sort_exemplo.quick_sort import QuickSort as qs
 from sort_exemplo.merge_sort import MergeSort as mg
 from sort_exemplo.shell_sort import ShellSort as ss
 from sort_exemplo.heap_sort import HeapSort as hs
@@ -33,8 +32,9 @@ import re
 # ['coluna_2']
 
 #Variaveis Globais:
-arquivo = 'arquivo_exemplo' # nome do arquivo
-coluna = 'coluna_2' # Coluna que vai ser retirada a lista para o sort
+arquivo = 'Teste3' # nome do arquivo
+coluna = 'so2' # Coluna que vai ser retirada a lista para o sort
+vezes = 1 #quantidade de vezes
 # ---------------------------------------------------------------------
 
 
@@ -50,7 +50,7 @@ def msgDesempenho(objeto):
 if __name__ == '__main__':
     listaTotal = []
     try:
-        for item in read('../base_dados/'+arquivo+'.csv'):
+        for item in read('./base_dados/'+arquivo+'.csv'):
             if re.match('[0-9]+', item[coluna]):
                 listaTotal.append(item[coluna])
         print("""
@@ -64,13 +64,13 @@ if __name__ == '__main__':
     
     print("\n")
 
-    # [qs, mg, hs, ss]
-    listaFuncoes = [qs, hs, mg, ss]
+    # [mg, hs, ss]
+    listaFuncoes = [hs, mg, ss]
     listaMisturada = listaTotal.copy()
     objetoTempoMedio = {}
     inicio = time.time()
     for func in listaFuncoes:
-        resp = media(listaMisturada, func, 1000)
+        resp = media(listaMisturada, func, vezes)
         print(resp['msg'])
         objetoTempoMedio[resp['nome']] = resp['tempo']
     print("\n")
