@@ -32,9 +32,9 @@ import re
 # ['coluna_2']
 
 #Variaveis Globais:
-arquivo = 'Teste3' # nome do arquivo
-coluna = 'so2' # Coluna que vai ser retirada a lista para o sort
-vezes = 1 #quantidade de vezes
+arquivo = 'Teste5' # nome do arquivo
+coluna = 'Average value' # Coluna que vai ser retirada a lista para o sort
+vezes = 2 #quantidade de vezes
 # ---------------------------------------------------------------------
 
 
@@ -44,10 +44,14 @@ def msgDesempenho(objeto):
     sortedObj = {}
     for item in keyObj:
         if float(objeto[item]) > 0:
-            sortedObj[f"{item}(\033[33m{objeto[item]}\033[0;0m)"] = objeto[item]
-    return " < ".join(list(reversed(sorted(sortedObj))))
+            sortedObj[objeto[item]] = f"{item}(\033[33m{objeto[item]}\033[0;0m)"
+    listResult = list(sortedObj.keys())
+    merge = mg()
+    merge.function(listResult)
+    return f"{sortedObj[listResult[0]]} < {sortedObj[listResult[1]]} < {sortedObj[listResult[2]]}"
 
 if __name__ == '__main__':
+    print('\n')
     listaTotal = []
     try:
         for item in read('./base_dados/'+arquivo+'.csv'):
@@ -75,4 +79,4 @@ if __name__ == '__main__':
         objetoTempoMedio[resp['nome']] = resp['tempo']
     print("\n")
     fim = time.time()
-    print(f"Tempo Total - \033[33m{'%f' % (fim - inicio)}s\033[0;0m -> ({msgDesempenho(objetoTempoMedio)})\n\n")
+    print(f"\033[0;0m -> ({msgDesempenho(objetoTempoMedio)})\n\n")
